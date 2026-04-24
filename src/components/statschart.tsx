@@ -1,24 +1,25 @@
-import "../../types";
+import "../types";
 import { useState, useEffect } from "react";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  Radar,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
- 
+import * as Recharts from "recharts";
+
+// Type assertion workaround for Recharts React 18 compatibility
+const PieChart = Recharts.PieChart as any;
+const Pie = Recharts.Pie as any;
+const Cell = Recharts.Cell as any;
+const BarChart = Recharts.BarChart as any;
+const Bar = Recharts.Bar as any;
+const XAxis = Recharts.XAxis as any;
+const YAxis = Recharts.YAxis as any;
+const CartesianGrid = Recharts.CartesianGrid as any;
+const Tooltip = Recharts.Tooltip as any;
+const RadarChart = Recharts.RadarChart as any;
+const PolarGrid = Recharts.PolarGrid as any;
+const PolarAngleAxis = Recharts.PolarAngleAxis as any;
+const PolarRadiusAxis = Recharts.PolarRadiusAxis as any;
+const Radar = Recharts.Radar as any;
+const Legend = Recharts.Legend as any;
+const ResponsiveContainer = Recharts.ResponsiveContainer as any;
+
 const pieData = [
   { name: "DS-TB", value: 57.9 },
   { name: "MDR-TB", value: 26.3 },

@@ -1,4 +1,4 @@
-import "../../types";
+import "../types";
 import React from "react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
