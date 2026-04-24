@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Badge } from "./ui/badge";
 import { Separator } from "./ui/separator";
-import * as Recharts;
+import * as Recharts from "recharts";
 
 
 // Remove the problematic line: const PolarAngleAxis = (props: any) => null;
