@@ -1,3 +1,4 @@
+import "../../types";
 import { useState, useEffect } from "react";
 import {
   PieChart,

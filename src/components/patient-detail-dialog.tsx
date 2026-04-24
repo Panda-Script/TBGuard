@@ -1,15 +1,19 @@
+import "../../types";
+import React from "react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Badge } from "./ui/badge";
 import { Separator } from "./ui/separator";
-import {
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  Radar,
-  ResponsiveContainer,
-} from "recharts";
+import * as Recharts;
+
+
+// Remove the problematic line: const PolarAngleAxis = (props: any) => null;
+const RadarChart = Recharts.RadarChart as any;
+const PolarGrid = Recharts.PolarGrid as any;
+const PolarAngleAxis = Recharts.PolarAngleAxis as any;
+const PolarRadiusAxis = Recharts.PolarRadiusAxis as any;
+const Radar = Recharts.Radar as any;
+const ResponsiveContainer = Recharts.ResponsiveContainer as any;
 
 interface PatientRecord {
   patient_id: string;
