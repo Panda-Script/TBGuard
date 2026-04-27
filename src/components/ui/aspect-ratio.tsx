@@ -1,4 +1,6 @@
-export const AspectRatio = ({ ratio = 16 / 9, children }) => (
+import React from "react";
+
+export const AspectRatio: React.FC<{ ratio?: number; children: React.ReactNode }> = ({ ratio = 16 / 9, children }) => (
   <div
     style={{
       position: "relative",
