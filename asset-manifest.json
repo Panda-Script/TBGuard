@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/TBGuard/static/css/main.9a992c95.css",
+    "main.js": "/TBGuard/static/js/main.f2ab0d4c.js",
+    "index.html": "/TBGuard/index.html",
+    "main.9a992c95.css.map": "/TBGuard/static/css/main.9a992c95.css.map",
+    "main.f2ab0d4c.js.map": "/TBGuard/static/js/main.f2ab0d4c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9a992c95.css",
+    "static/js/main.f2ab0d4c.js"
+  ]
+}
