@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { Skeleton } from "../components/ui/skeleton";
 import PatientCard from "../components/patientcard";
 import PatientDetailDialog from "../components/patient-detail-dialog";
+import { PatientRecord } from "../types";
 
-// Mock patient data
-const mockPatientRecords = [
+// ✅ FIXED: Added type annotation
+const mockPatientRecords: PatientRecord[] = [
   {
     id: "1",
     patient_id: "P-10001",
@@ -195,9 +196,9 @@ function useWindowWidth() {
 }
 
 export default function DataPage() {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<PatientRecord | null>(null); // ✅ Fixed: Added type
   const [isLoading, setIsLoading] = useState(true);
-  const [records, setRecords] = useState([]);
+  const [records, setRecords] = useState<PatientRecord[]>([]);
   const width = useWindowWidth();
 
   // Simulate loading delay
@@ -214,13 +215,13 @@ export default function DataPage() {
     let columns;
 
     if (width >= 1440) {
-      columns = "repeat(4, 1fr)"; // 4 cards on very large screens
+      columns = "repeat(4, 1fr)";
     } else if (width >= 1024) {
-      columns = "repeat(3, 1fr)"; // 3 cards on desktop
+      columns = "repeat(3, 1fr)";
     } else if (width >= 768) {
-      columns = "repeat(2, 1fr)"; // 2 cards on tablet
+      columns = "repeat(2, 1fr)";
     } else {
-      columns = "1fr"; // 1 card on mobile
+      columns = "1fr";
     }
 
     return {
@@ -263,4 +264,4 @@ export default function DataPage() {
       />
     </div>
   );
-} 
+}
