@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const Accordion = ({ items }) => {
+export const Accordion = ({ items }: { items: { title: string; content: string }[] }) => {
   const [openIndex, setOpenIndex] = useState(null);
   return (
     <div className="accordion">
