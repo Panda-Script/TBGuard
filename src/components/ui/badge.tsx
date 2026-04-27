@@ -1,4 +1,4 @@
-export const Badge = ({ children, variant = "default" }) => {
+export const Badge = ({ children, variant = "default" }: { children: React.ReactNode; variant?: "default" | "secondary" | "outline" | "success" | "danger" }) => {
   const variants = {
     default: { background: "#3b82f6", color: "white" },
     secondary: { background: "#e5e7eb", color: "#374151" },

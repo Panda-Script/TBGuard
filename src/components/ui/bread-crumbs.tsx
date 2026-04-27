@@ -1,4 +1,4 @@
-export const Breadcrumbs = ({ items }) => (
+export const Breadcrumbs = ({ items }: { items: { label: string; href?: string }[] }) => (
   <nav>
     <ol
       style={{

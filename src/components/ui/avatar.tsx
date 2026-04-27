@@ -1,4 +1,4 @@
-export const Avatar = ({ src, alt, fallback, size = 40 }) => (
+export const Avatar = ({ src, alt, fallback, size = 40 }: { src?: string; alt?: string; fallback: string; size?: number }) => (
   <div
     style={{
       width: size,
@@ -17,7 +17,7 @@ export const Avatar = ({ src, alt, fallback, size = 40 }) => (
         alt={alt}
         style={{ width: "100%", height: "100%", objectFit: "cover" }}
       />
-    ) : ( 
+    ) : (
       <span style={{ fontSize: size * 0.4 }}>{fallback}</span>
     )}
   </div>
