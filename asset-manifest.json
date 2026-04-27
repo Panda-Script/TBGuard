@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.9a992c95.css",
-    "main.js": "/static/js/main.8c1bc4e6.js",
-    "index.html": "/index.html",
-    "main.9a992c95.css.map": "/static/css/main.9a992c95.css.map",
-    "main.8c1bc4e6.js.map": "/static/js/main.8c1bc4e6.js.map"
+    "main.css": "/TBGuard/static/css/main.9a992c95.css",
+    "main.js": "/TBGuard/static/js/main.8c1bc4e6.js",
+    "index.html": "/TBGuard/index.html",
+    "main.9a992c95.css.map": "/TBGuard/static/css/main.9a992c95.css.map",
+    "main.8c1bc4e6.js.map": "/TBGuard/static/js/main.8c1bc4e6.js.map"
   },
   "entrypoints": [
     "static/css/main.9a992c95.css",
