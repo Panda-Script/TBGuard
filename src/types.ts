@@ -57,21 +57,23 @@ export interface ButtonProps {
   fullWidth?: boolean;
 }
 
-// Patient Types
+export type VerdictType = "Positive" | "Negative" | "Inconclusive" | "Pending";
+
+// Updated Patient Types - Include all fields from your mock data
 export interface PatientRecord {
-  id: string;
+  id: string;                              // ✅ Added
   patient_id: string;
-  name: string;
-  age: number;
-  gender: string;
-  diagnosis: string;
-  judge_verdict: string;
-  genomics_agent_score: number;
-  clinical_agent_score: number;
-  xray_agent_score: number;
-  rag_confidence_score: number;
-  ct_agent_score: number;
-  confidence_score: number;
-  notes: string;
-  image_url: string | null;
+  name?: string;
+  age?: number;                            // ✅ Added
+  gender?: string;                         // ✅ Added
+  diagnosis?: string;
+  judge_verdict?: VerdictType;
+  genomics_agent_score?: number;           // ✅ Added
+  clinical_agent_score?: number;           // ✅ Added
+  xray_agent_score?: number;               // ✅ Added
+  rag_confidence_score?: number;           // ✅ Added
+  ct_agent_score?: number;                 // ✅ Added
+  confidence_score?: number;
+  notes?: string;                          // ✅ Added
+  image_url?: string | null;
 }

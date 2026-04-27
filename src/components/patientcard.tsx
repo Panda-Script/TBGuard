@@ -1,6 +1,7 @@
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { User, Activity } from "lucide-react";
+import { PatientRecord } from "../types";
 
 const diagnosisBadgeVariants = {
   DS: "default",
@@ -16,6 +17,7 @@ const verdictColors = {
   Positive: { color: "#dc2626" },
   Negative: { color: "#16a34a" },
   Inconclusive: { color: "#d97706" },
+  Pending: { color: "#6b7280" }, 
 };
 
 const styles = {
@@ -94,15 +96,6 @@ const styles = {
   },
 };
 
-interface PatientRecord {
-  patient_id: string;
-  name?: string;
-  diagnosis?: string;
-  judge_verdict?: "Positive" | "Negative" | "Inconclusive";
-  confidence_score?: number;
-  image_url?: string;
-}
-
 interface PatientCardProps {
   record: PatientRecord;
   onClick?: (record: PatientRecord) => void;
@@ -117,9 +110,9 @@ export default function PatientCard({ record, onClick }: PatientCardProps) {
     diagnosisBadgeVariants[
       record.diagnosis as keyof typeof diagnosisBadgeVariants
     ] || "outline";
-  const verdictStyle = record.judge_verdict
-    ? verdictColors[record.judge_verdict]
-    : null;
+const verdictStyle = record.judge_verdict
+  ? verdictColors[record.judge_verdict]  // ✅ Works fine now
+  : null;
 
   return (
     <div

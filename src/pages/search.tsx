@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
@@ -11,9 +11,10 @@ import {
 import { Search, SlidersHorizontal } from "lucide-react";
 import PatientCard from "../components/patientcard";
 import PatientDetailDialog from "../components/patient-detail-dialog";
+import { PatientRecord } from "../types";
 
-// Mock patient data
-const mockPatientRecords = [
+// Mock patient data - removed 'as const' to fix type issues
+const mockPatientRecords: PatientRecord[] = [
   {
     id: "1",
     patient_id: "P-10001",
@@ -251,10 +252,10 @@ function useWindowWidth() {
 export default function SearchPage() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterField, setFilterField] = useState("patient_id");
-  const [activeSearch, setActiveSearch] = useState(null);
-  const [selected, setSelected] = useState(null);
-  const [records, setRecords] = useState([]);
+  const [filterField, setFilterField] = useState<keyof PatientRecord>("patient_id");
+  const [activeSearch, setActiveSearch] = useState<{ field: keyof PatientRecord; term: string } | null>(null);
+  const [selected, setSelected] = useState<PatientRecord | null>(null);
+  const [records, setRecords] = useState<PatientRecord[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const width = useWindowWidth();
 
@@ -268,12 +269,20 @@ export default function SearchPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  const filteredRecords = activeSearch
-    ? records.filter((r) => {
-        const value = String(r[activeSearch.field] || "").toLowerCase();
-        return value.includes(activeSearch.term.toLowerCase());
-      })
-    : [];
+  // FIXED: Type-safe filtering
+  const filteredRecords = useMemo(() => {
+    if (!activeSearch) return [];
+    
+    return records.filter((record) => {
+      const fieldValue = record[activeSearch.field];
+      // Handle different field types
+      let value = "";
+      if (fieldValue !== undefined && fieldValue !== null) {
+        value = String(fieldValue).toLowerCase();
+      }
+      return value.includes(activeSearch.term.toLowerCase());
+    });
+  }, [records, activeSearch]);
 
   const handleSubmit = () => {
     if (!searchTerm.trim()) return;
@@ -288,10 +297,28 @@ export default function SearchPage() {
   };
 
   const getGridStyle = () => {
-    if (width >= 1024) return styles.gridLg;
-    if (width >= 768) return styles.gridMd;
+    if (width >= 1024) return { ...styles.grid, ...styles.gridLg };
+    if (width >= 768) return { ...styles.grid, ...styles.gridMd };
     return styles.grid;
   };
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div style={styles.container}>
+        <div style={styles.header}>
+          <h2 style={styles.title}>Search Records</h2>
+          <Button onClick={() => setSearchOpen(true)}>
+            <Search size={16} style={{ marginRight: "8px" }} />
+            Search
+          </Button>
+        </div>
+        <div style={styles.emptyState}>
+          <p>Loading patient records...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={styles.container}>
@@ -314,7 +341,7 @@ export default function SearchPage() {
               <Label>Search field</Label>
               <select
                 value={filterField}
-                onChange={(e) => setFilterField(e.target.value)}
+                onChange={(e) => setFilterField(e.target.value as keyof PatientRecord)}
                 style={styles.select}
               >
                 <option value="patient_id">Patient ID</option>
@@ -355,7 +382,9 @@ export default function SearchPage() {
             </Button>
           </div>
           {filteredRecords.length === 0 ? (
-            <p style={styles.emptyState}>No records match your search.</p>
+            <div style={styles.emptyState}>
+              <p>No records match your search.</p>
+            </div>
           ) : (
             <div style={getGridStyle()}>
               {filteredRecords.map((r) => (
@@ -383,4 +412,4 @@ export default function SearchPage() {
       />
     </div>
   );
-} 
+}

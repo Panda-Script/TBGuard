@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Badge } from "./ui/badge";
 import { Separator } from "./ui/separator";
 import * as Recharts from "recharts";
+import { PatientRecord } from "../types";
 
 
 // Remove the problematic line: const PolarAngleAxis = (props: any) => null;
@@ -14,21 +15,6 @@ const PolarAngleAxis = Recharts.PolarAngleAxis as any;
 const PolarRadiusAxis = Recharts.PolarRadiusAxis as any;
 const Radar = Recharts.Radar as any;
 const ResponsiveContainer = Recharts.ResponsiveContainer as any;
-
-interface PatientRecord {
-  patient_id: string;
-  name?: string;
-  age?: number; 
-  gender?: string;
-  diagnosis?: string;
-  judge_verdict?: "Positive" | "Negative" | "Pending";
-  genomics_agent_score?: number;
-  clinical_agent_score?: number;
-  xray_agent_score?: number;
-  rag_confidence_score?: number;
-  ct_agent_score?: number;
-  notes?: string;
-}
 
 interface PatientDetailDialogProps {
   record: PatientRecord | null;
