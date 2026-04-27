@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const Accordion = ({ items }: { items: { title: string; content: string }[] }) => {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   return (
     <div className="accordion">
       {items.map((item, idx) => (
